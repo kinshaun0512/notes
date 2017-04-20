@@ -1,0 +1,28 @@
+sudo yum groupinstall "Development Tools"
+sudo yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel
+sudo yum install curl-devel
+sudo yum install wget
+
+wget https://github.com/git/git/archive/v2.7.2.tar.gz -O git.tar.gz
+tar -zxf git.tar.gz
+cd git-2.7.2
+./configure
+make
+make install
+
+git --version
+git config --global user.name "kinshaun0512"
+git config --global user.email "kinshaun0512@gmail.com"
+
+ssh-keygen -t rsa -b 4096 -C "kinshaun0512@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+
+git init
+git remote add origin https://github.com/kinshaun0512/notes.git
+git pull origin master
+git add -A
+git status
+git commit -a
+git push origin master
