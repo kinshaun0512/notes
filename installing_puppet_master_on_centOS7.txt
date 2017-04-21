@@ -1,0 +1,31 @@
+yum install iptables-services
+iptables -F
+service iptables save
+systemctl stop firewalld; systemctl disable firewalld
+
+rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+
+yum install puppet-server
+
+ifconfig
+vi /etc/hosts
+192.168.50.101 puppet puppet.kinshaun0512.com
+
+vi /etc/puppet/puppet.conf
+[main]
+    dns_alt_names = puppet,puppet.kinshaun0512.com
+    certname = puppet
+
+service puppetmaster start
+systemctl start puppetmaster
+
+service puppetmaster stop
+systemctl stop puppetmaster
+sudo -u puppet puppet master --no-daemonize --verbose
+Notice: Starting Puppet master version 3.8.7
+^CNotice: Caught INT; exiting
+
+puppet resource service puppetmaster ensure=running
+
+puppet cert list
+puppet cert sign --all

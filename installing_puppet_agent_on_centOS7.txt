@@ -1,0 +1,22 @@
+yum install iptables-services
+iptables -F
+service iptables save
+
+rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+
+yum install puppet
+
+ifconfig
+vi /etc/hosts
+192.168.50.102 puppetagent
+192.168.50.101 puppet puppet.kinshaun0512.com
+
+vi /etc/puppet/puppet.conf
+[agent]
+	server = puppet.kinshaun0512.com
+
+puppet agent -t
+
+service puppet start
+systemctl start puppet
+systemctl enable puppet
