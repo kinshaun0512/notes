@@ -18,6 +18,7 @@ ssh-keygen -t rsa -b 4096 -C "kinshaun0512@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub
+ssh -T git@github.com
 
 git init
 git remote add origin https://github.com/kinshaun0512/notes.git

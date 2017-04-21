@@ -1,6 +1,13 @@
 sudo apt-get install git
 git config --global user.name "kinshaun0512"
 git config --global user.email "kinshaun0512@gmail.com"
+
+ssh-keygen -t rsa -b 4096 -C "kinshaun0512@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub
+ssh -T git@github.com
+
 git init
 git remote add origin https://github.com/kinshaun0512/notes.git
 git pull origin master
