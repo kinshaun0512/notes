@@ -1,0 +1,24 @@
+sudo yum install java-1.8.0-openjdk
+java -version
+sudo yum install wget
+wget http://mirror.fibergrid.in/apache/tomcat/tomcat-9/v9.0.0.M20/bin/apache-tomcat-9.0.0.M20.tar.gz
+tar xzf apache-tomcat-9.0.0.M20.tar.gz
+sudo mv apache-tomcat-9.0.0.M20 tomcat9
+
+gedit /root/tomcat9/conf/tomcat-users.xml
+<role rolename="manager-gui"/> 
+<role rolename="manager-script"/> 
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<role rolename="admin-gui"/>
+<role rolename="admin-script"/> 
+<user username="[USERNAME]" password="[PASSWORD]" roles="manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script"/>
+
+cd tomcat9/
+###./bin/shutdown.sh###
+./bin/startup.sh
+
+cd
+wget https://updates.jenkins-ci.org/download/war/2.7.3/jenkins.war
+
+cat /root/.jenkins/secrets/initialAdminPassword
